@@ -1,0 +1,26 @@
+[Service]
+# Port number of Service
+Port = "10080"
+
+[Slack]
+# URL of Files
+FileURL = "https://slack.com/api/files.info"
+# Token of Bot User
+BotToken = "xoxb-000000000000-0000000000000-slackappbottokensample00"
+# Channel of File Upload
+Channel = "XXXXXXXXXX"
+# URL of Chat
+ChatURL = "https://slack.com/api/chat.postMessage"
+
+[File]
+# Path of FileUpload
+Path = "/sample/path/download"
+DLURL = "https://sample-slackapp.co.jp/download"
+
+[Log]
+# log level. "DBG" or "INF"
+LogLevel    = "DBG"
+# output dir path.
+OutputPath  = "/var/log/"
+# file extend.
+FileExtend  = ".log"
