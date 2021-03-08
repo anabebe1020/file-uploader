@@ -3,7 +3,7 @@ Description=File upload server
 After=syslog.target network.target
 
 [Service]
-ExecStart=/xxx/xxx/FileUploader
+ExecStart=/xxx/xxx/uploader
 User=www-data
 
 [Install]
