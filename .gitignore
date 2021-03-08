@@ -2,4 +2,4 @@
 configs/config.toml
 
 # exec file
-file-uploader
+output/uploader

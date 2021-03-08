@@ -1,4 +1,4 @@
-module github.com/anabebe1020/file-uploader
+module github.com/anabebe1020/uploader
 
 go 1.15
 
