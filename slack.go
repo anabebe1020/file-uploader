@@ -84,6 +84,12 @@ func EventCallback(req URLReq) {
 		fmt.Println(fmt.Sprintf("type:%s text:%s file_iD:%s ", req.Event.Type, req.Event.Text, req.Event.FileID))
 		return
 	}
+	// check disc.
+	if !IsAllowance() {
+		fmt.Println("isPressing.")
+		SendChat("ファイルサーバーの空き容量が不足しています。")
+		return
+	}
 	// req params.
 	var fileReq FileReq
 	fileReq.Token = config.Slack.BotToken
@@ -143,9 +149,11 @@ func DispFileList() string {
 		panic(err)
 	}
 	var paths string = ""
+	var count int = 1
 	for _, file := range files {
 		if file.IsDir() {
-			paths += DirWalk(file.Name()) + "\n"
+			paths += fmt.Sprintf("%2d) %s\n", count, DirWalk(file.Name()))
+			count++
 			continue
 		}
 	}

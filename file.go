@@ -6,8 +6,13 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"strconv"
+	"strings"
 	"time"
+
+	"github.com/anabebe1020/logger"
 )
 
 // OperateFile ...
@@ -47,8 +52,6 @@ func OperateFile(fURL, name string) string {
 		fmt.Println(logText, err)
 		return logText
 	}
-	//baseURL, _ := url.Parse(config.File.DLURL)
-	//baseURL.Path = path.Join(baseURL.Path, hash, name)
 	upURL := config.File.DLURL + "/" + hash + "/" + name
 	return fmt.Sprintf("<%s|%s>", upURL, upURL)
 }
@@ -65,7 +68,6 @@ func GetFile(url string) []byte {
 	// respons body.
 	resBody, _ := ioutil.ReadAll(res.Body)
 	defer res.Body.Close()
-	//fmt.Println("GetFile response:" + string(resBody))
 	return resBody
 }
 
@@ -105,6 +107,28 @@ func CreateFile(path string) *os.File {
 	}
 
 	return file
+}
+
+// IsAllowance ...
+func IsAllowance() bool {
+	// command "df".
+	cmdstr := fmt.Sprintf("df -k |grep %s | awk '{ print $4 }'", config.File.Fsys)
+	out, _ := exec.Command("sh", "-c", cmdstr).Output()
+	// trim.
+	avStr := strings.TrimRight(string(out), "\n")
+	text := fmt.Sprintf("df:%s remit:%d", avStr, config.File.Remit)
+	fmt.Println(text)
+	logger.DebugLog(logConf, text)
+	// parse.
+	avail, _ := strconv.ParseInt(avStr, 10, 32)
+	text = fmt.Sprintf("df1:%s df2:%d remit:%d", avStr, avail, config.File.Remit)
+	fmt.Println(text)
+	logger.DebugLog(logConf, text)
+	// check.
+	if avail < config.File.Remit {
+		return false
+	}
+	return true
 }
 
 // DirWalk ...

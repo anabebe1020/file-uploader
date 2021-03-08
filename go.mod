@@ -1,4 +1,4 @@
-module gitlab.com/RyousukeAbe/FileUploader
+module github.com/anabebe1020/file-uploader
 
 go 1.15
 

@@ -1,0 +1,10 @@
+[Unit]
+Description=File upload server
+After=syslog.target network.target
+
+[Service]
+ExecStart=/xxx/xxx/FileUploader
+User=www-data
+
+[Install]
+WantedBy=multi-user.target

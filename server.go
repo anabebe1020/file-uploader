@@ -12,7 +12,6 @@ import (
 
 func service() {
 	router := gin.Default()
-	//router.LoadHTMLGlob("views/*.html")
 	router.Static("/assets", "./assets")
 
 	// GET

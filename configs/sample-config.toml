@@ -15,7 +15,12 @@ ChatURL = "https://slack.com/api/chat.postMessage"
 [File]
 # Path of FileUpload
 Path = "/sample/path/download"
+# Download URL
 DLURL = "https://sample-slackapp.co.jp/download"
+# File System to be checked
+Fsys = "/dev/xxxxx"
+# Remit is disc pressing(kByte)
+Remit = 4000000
 
 [Log]
 # log level. "DBG" or "INF"

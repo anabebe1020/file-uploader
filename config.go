@@ -33,6 +33,8 @@ type SlackConfig struct {
 type FileConfig struct {
 	Path  string `toml:"Path"`
 	DLURL string `toml:"DLURL"`
+	Fsys  string `toml:"Fsys"`
+	Remit int64  `toml:"Remit"`
 }
 
 // LogConfig ...
@@ -46,7 +48,7 @@ type LogConfig struct {
 func GetConfig() (config Config) {
 	// read config.
 	exe, _ := os.Executable()
-	confPath := filepath.Join(filepath.Dir(exe), "config.toml")
+	confPath := filepath.Join(filepath.Dir(exe), "configs", "config.toml")
 	_, err := toml.DecodeFile(confPath, &config)
 	if err != nil {
 		// Error Handling
