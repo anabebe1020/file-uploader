@@ -49,22 +49,24 @@ $ sudo cp -p ./sample-config.toml ./config.toml
 
 ## ビルド & 実行
 
-ビルドして出力された実行ファイルを実行します。必要に応じてサービス化を行ってください。
+ビルドして出力された実行ファイルを実行します。必要に応じて自動起動設定を行ってください。
 ```
-$ go build
-$ ./FileUploader
+$ cd build/
+$ ./build.sh
+$ cd ../
+$ ./output/uploader
 ```
 
-## 自動起動設定（linux）
+## おまけ 自動起動設定（linux）
 
 サーバーが再起動された時に自動で起動するように設定します。
 ```
-$ cp -p ./service/FileUploader.service /etc/systemd/system/
-$ systemctl enable FileUploader.service
-$ systemctl start FileUploader.service
+$ cp -p ./service/file-uploader.service /etc/systemd/system/
+$ systemctl enable file-uploader.service
+$ systemctl start file-uploader.service
 ```
 
-## 自動削除設定（linux）
+## おまけ 自動削除設定（linux）
 
 アップロードから14日経過したファイルをフォルダごと削除する、というチャックを毎日00:00に行う。
 ```
